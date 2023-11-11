@@ -1,0 +1,70 @@
+.btns {
+    margin-top: 30px;
+}
+.btn {
+    display: block;
+    color: #fff;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background: linear-gradient(0deg, #000, #000) padding-box,
+        linear-gradient(180deg, #ce9ffc 0%, #a582f7 50%, #7367f0 100%)
+            border-box;
+    background-size: 100% 100%, 100% 100%;
+}
+@media (min-width: 992px) {
+    .btn:hover {
+        color: white;
+        background-size: 0% 0%, 100% 100%;
+        animation: btn_animation 0.5s ease forwards;
+    }
+}
+@media (max-width: 992px) {
+    .btn:active {
+        color: white;
+        background-size: 0% 0%, 100% 100%;
+        animation: btn_animation 0.5s ease forwards;
+    }
+}
+@keyframes btn_animation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 50% 50%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.players {
+    background: linear-gradient(to left, #753ad5, #d53a9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.custom-table {
+    background: linear-gradient(to left, #753ad5, #d53a9d);
+    color: white;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #753ad5;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #753ad5;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #d53a9d;
+}
