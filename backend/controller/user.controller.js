@@ -13,8 +13,14 @@ class UserController {
         res.json(newPlayer.rows[0]);
     }
     async getUsers(req, res) {
-        const users = await db.query("SELECT * FROM  player");
-        res.json(users.rows);
+        try {
+            const query = "SELECT * FROM player ORDER BY score DESC LIMIT 10";
+            const users = await db.query(query);
+            res.json(users.rows);
+        } catch (error) {
+            console.error("Error fetching users:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     }
     async getOneUser(req, res) {
         const id = req.params.id;

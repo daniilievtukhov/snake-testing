@@ -1,7 +1,8 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./NameInputForm.css";
 import { createUser } from "../services/api";
+import { UserContext } from "../context/UserContext";
 interface NameInputFormProps {
     onSubmit: (name: string) => void;
 }
@@ -9,6 +10,8 @@ interface NameInputFormProps {
 const NameInputForm: React.FC<NameInputFormProps> = ({ onSubmit }) => {
     const [username, setUsername] = useState("");
     const [isNameValid, setIsNameValid] = useState(false);
+
+    const { setUser } = useContext(UserContext);
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputName = e.target.value;
@@ -26,13 +29,13 @@ const NameInputForm: React.FC<NameInputFormProps> = ({ onSubmit }) => {
     const create = () => {
         if (isNameValid) {
             createUser(username).then((response) => {
-                setUsername(response.data);
+                setUser(response.data);
             });
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="centered-form" onSubmit={handleSubmit}>
             <label>
                 Введіть ваше ім'я:
                 <input
@@ -45,7 +48,7 @@ const NameInputForm: React.FC<NameInputFormProps> = ({ onSubmit }) => {
             </label>
             <Link to={isNameValid ? "/game" : ""}>
                 <button
-                    className="btn"
+                    className={`btn ${isNameValid ? "active" : ""}`}
                     onClick={create}
                     type="submit"
                     disabled={!isNameValid}

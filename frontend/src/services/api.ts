@@ -12,6 +12,6 @@ export const createUser = (username: string) => {
     return axios.post(`${BASE_URL}user`, { username });
 };
 
-export const undateUserScore = (id: number, score: number) => {
+export const updateUserScore = (id: number, score: number) => {
     return axios.put(`${BASE_URL}user`, { id, score });
 };
