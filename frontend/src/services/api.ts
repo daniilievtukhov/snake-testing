@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://snake-testing-db2r.vercel.app/";
+const BASE_URL = "http://localhost:8080/api/";
 
 export const getUsers = () => {
     return axios.get(`${BASE_URL}user`);
