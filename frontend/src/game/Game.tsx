@@ -26,7 +26,7 @@ const Game: React.FC<GameProps> = ({}) => {
     const [isScoreUpdated, setIsScoreUpdated] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const [gameState, setGameState] = useState<GameState>(GameState.RUNNING);
-    const [players, setPlayers] = useState<PlayersData[]>([]); // Локальний стан для гравців
+    const [players, setPlayers] = useState<PlayersData[]>([]);
 
     const onGameOver = () => setGameState(GameState.GAME_OVER);
     const { snakeBody, onKeyDownHandler, foodPosition, resetGameState, score } =
@@ -58,7 +58,6 @@ const Game: React.FC<GameProps> = ({}) => {
         if (gameState === GameState.GAME_OVER && user) {
             const updatedScore = score;
 
-            // Локально оновити користувача
             setUser((prevUser: { score: number }) => ({
                 ...prevUser,
                 score: updatedScore,
@@ -66,7 +65,6 @@ const Game: React.FC<GameProps> = ({}) => {
 
             updateUserScore(user.id, updatedScore)
                 .then(() => {
-                    // Оновити гравців після успішного оновлення на сервері
                     setPlayers((prevPlayers) =>
                         prevPlayers.map((player) =>
                             player.id === user.id
@@ -80,7 +78,7 @@ const Game: React.FC<GameProps> = ({}) => {
                     setUser((prevUser: any) => ({
                         ...prevUser,
                         score: user.score,
-                    })); // Відновити попередній стан користувача у випадку помилки
+                    }));
                     console.error("Error updating user score:", error);
                 });
         }
